@@ -1,5 +1,11 @@
 import random
-
+'''
+Created on Sep 12, 2022
+desc: uses intellegent computer to make right move
+last edited: 11/22/22
+Bugs: None
+@author: NoahSokol
+'''
 
 def print_board(boardlist):
     '''
@@ -78,7 +84,7 @@ def inteligent_computer(boardlist, turn):
                 boardlist[i][2] = 'x'
                 return 0
         for i in range(0,3):
-            if boardlist[i][0]!= 'x' and boardlist[i][0]!='o':
+            if boardlist[i][0]!= 'x' and boardlist[i][0]!='x':
                 boardlist[i][2] = 'x'
                 return 0
     while True:
@@ -101,12 +107,18 @@ def get_user_choice(userchoice,boardlist):
     '''
     userchoicer = int(userchoice.split(',')[0])-1
     userchoicec = int(userchoice.split(",")[1])-1
-    if (userchoice == '1,1' or userchoice == '1,2' or userchoice == '1,3' or userchoice == '2,1' or userchoice == '2,2' or userchoice == '2,3' or userchoice == '3,1' or userchoice == '3,2' or userchoice == '3,3') and boardlist[userchoicer][userchoicec] == '-':
-        if boardlist[userchoicer][userchoicec] != 'x' or boardlist[userchoicer][userchoicec] != 'o':         boardlist[userchoicer][userchoicec] = 'o'
+    if (userchoice == '1,1' or userchoice == '1,2' or userchoice == '1,3' or userchoice == '2,1' or userchoice == '2,2' or userchoice == '2,3' or userchoice == '3,1' or userchoice == '3,2' or userchoice == '3,3'):
+        if (boardlist[userchoicer][userchoicec]) == '-':
+            boardlist[userchoicer][userchoicec] = 'o'    
+            return 0
+        else:
+            print("please make sure the spot you chose isn't full already")
+            raise IndexError
     else:
-        print("please enter 1,1 to 3,3 or make sure the spot you chose isn't full already")
-        return False
+        print("please enter 1,1 to 3,3")
+        raise ValueError
 
+        
 def end_game(boardlist):
     '''
     sees if the game should end
@@ -170,7 +182,7 @@ def player_turn(boardlist):
     '''
     while True:
         try:
-            userchoiceinput = input('what spot would you like to fill')
+            userchoiceinput = input('what spot would you like to fill').strip(' ')
             get_user_choice(userchoiceinput,boardlist)
             break
         except ValueError: print('please enter in number , number form please')
@@ -183,8 +195,8 @@ def main():
     boardlist = [['-', '-', '-',],['-', '-', '-',],['-', '-', '-',]]
     if random.randint(0,1) == 1: player_goes_first = True
     else: player_goes_first = False
-    print("1,1|1,2|1,3\n2,1|2,2|2,3\n3,1|3,2|3,3")
-    for turn in range(1,10):
+    print('1,1|1,2|1,3\n2,1|2,2|2,3\n3,1|3,2|3,3\n')
+    for turn in range(1,20):
         if player_goes_first == False:
             inteligent_computer(boardlist, turn)
             print_board(boardlist)

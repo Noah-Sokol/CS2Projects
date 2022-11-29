@@ -78,7 +78,7 @@ def inteligent_computer(boardlist, turn):
                 boardlist[i][2] = 'x'
                 return 0
         for i in range(0,3):
-            if boardlist[i][0]!= 'x' and boardlist[i][0]!='x':
+            if boardlist[i][0]!= 'x' and boardlist[i][0]!='o':
                 boardlist[i][2] = 'x'
                 return 0
     while True:
@@ -101,7 +101,8 @@ def get_user_choice(userchoice,boardlist):
     '''
     userchoicer = int(userchoice.split(',')[0])-1
     userchoicec = int(userchoice.split(",")[1])-1
-    if (userchoice == '1,1' or userchoice == '1,2' or userchoice == '1,3' or userchoice == '2,1' or userchoice == '2,2' or userchoice == '2,3' or userchoice == '3,1' or userchoice == '3,2' or userchoice == '3,3') and boardlist[userchoicer][userchoicec] == '-':        boardlist[userchoicer][userchoicec] = 'o'
+    if (userchoice == '1,1' or userchoice == '1,2' or userchoice == '1,3' or userchoice == '2,1' or userchoice == '2,2' or userchoice == '2,3' or userchoice == '3,1' or userchoice == '3,2' or userchoice == '3,3') and boardlist[userchoicer][userchoicec] == '-':
+        if boardlist[userchoicer][userchoicec] != 'x' or boardlist[userchoicer][userchoicec] != 'o':         boardlist[userchoicer][userchoicec] = 'o'
     else:
         print("please enter 1,1 to 3,3 or make sure the spot you chose isn't full already")
         return False
@@ -118,7 +119,7 @@ def end_game(boardlist):
     '''
     if win_check(boardlist) == 'computer win':
         print('computer wins')
-        return 'computer win', True
+        return True
     elif win_check(boardlist) == 'player win':
         print('player wins')
         return True
@@ -182,6 +183,7 @@ def main():
     boardlist = [['-', '-', '-',],['-', '-', '-',],['-', '-', '-',]]
     if random.randint(0,1) == 1: player_goes_first = True
     else: player_goes_first = False
+    print("1,1|1,2|1,3\n2,1|2,2|2,3\n3,1|3,2|3,3")
     for turn in range(1,10):
         if player_goes_first == False:
             inteligent_computer(boardlist, turn)

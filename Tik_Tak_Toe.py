@@ -105,8 +105,8 @@ def get_user_choice(userchoice,boardlist):
     Returns:
         changes the board if it works    
     '''
-    userchoicer = int(userchoice.split(',')[0])-1
-    userchoicec = int(userchoice.split(",")[1])-1
+    userchoicer = int(userchoice.split(',')[0].replace(' ',''))-1
+    userchoicec = int(userchoice.split(",")[1].replace(' ',''))-1
     if (userchoice == '1,1' or userchoice == '1,2' or userchoice == '1,3' or userchoice == '2,1' or userchoice == '2,2' or userchoice == '2,3' or userchoice == '3,1' or userchoice == '3,2' or userchoice == '3,3'):
         if (boardlist[userchoicer][userchoicec]) == '-':
             boardlist[userchoicer][userchoicec] = 'o'    
@@ -190,7 +190,7 @@ def player_turn(boardlist):
     print_board(boardlist)
 
 
-def main(): 
+def main():
     turn = 0
     boardlist = [['-', '-', '-',],['-', '-', '-',],['-', '-', '-',]]
     if random.randint(0,1) == 1: player_goes_first = True
@@ -212,6 +212,7 @@ def main():
             print ("\n\n")
             inteligent_computer(boardlist, turn)
             print_board(boardlist)
-
+    
+    if input('play again (yes/no): ').lower == 'yes': main()
 
 main()

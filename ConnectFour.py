@@ -1,15 +1,5 @@
-class user_input():
-    def __init__(self,var,board) -> None:
-        self.var = var
-        self.board = board
-    def drops_at(self) -> int:
-        for i in range(len(self.board[self.var])):
-            if self.board[self.var][i] == 'o': return i
-        return False    
-
-
 def printboard(board):
-    print('1 2 3 4 5 6')
+    print('1   2   3   4   5   6  ')
     for x in range(5):
         for i in range(6):
             print(board[i][4-x],end = " ")
@@ -21,7 +11,7 @@ def get_user_turn(board):
             column = int(input('which column would you like to chose'))-1
             for i in range(len(board[column])):
                 if board[column][i] == ' o ':
-                    return int(column), int(i)
+                    return (str(column) + ','+ str(i))
             raise NameError
         except ValueError:print('value error')
         except IndexError:print('please input a number 1-6')
@@ -35,6 +25,40 @@ def playerchoice():
         else: raise NameError
     except NameError: print('please input either r or b')
 
+def win_check(board,position):
+    if verticle_win_check(board,position) == True or horizontal_win_check(board,position) == True:
+        print('you win')
+
+def horizontal_win_check(board,position):
+        horizontal = 1
+        try:
+            for i in range(1,4):
+                if board[int(position[0])][int(position[2])] == board[int(position[0])+i][int(position[2])] != ' o ':
+                    horizontal+=1
+                else:break
+        except IndexError: pass
+        for i in range(1,4):
+            if board[int(position[0])][int(position[2])] == board[int(position[0])-i][int(position[2])] != ' o ':
+                horizontal+=1
+            else:break
+        return True if horizontal >= 4 else False
+
+
+
+def verticle_win_check(board,position):
+        verticle = 1
+        try:
+            for i in range(1,4):
+                if board[int(position[0])][int(position[2])] == board[int(position[0])][int(position[2])+i] != ' o ':
+                    verticle+=1
+                else:break
+        except IndexError: pass
+        for i in range(1,4):
+            if int(position[2])<i:break 
+            elif board[int(position[0])][int(position[2])] == board[int(position[0])][int(position[2])-i] != ' o ':
+                verticle+=1
+            else:break
+        return True if verticle >= 4 else False
 
 
 
@@ -43,9 +67,15 @@ def playerchoice():
 def main():
 
     print('🔴🔵')
-    board = [[' x ',' o ',' o ',' o ',' o ',' o '],[' x ',' o ',' o ',' o ',' o ',' o '],[' o ',' o ',' o ',' o ',' o ',' o '],[' o ',' o ',' o ',' o ',' o ',' o '],[' o ',' o ',' o ',' o ',' o ',' o '],[' x ',' o ',' o ',' o ',' o ',' o '],[' o ',' o ',' o ',' o ',' o ',' o ']]
-    printboard(board)
-    get_user_turn(board)
+    board = [[' o ',' o ',' o ',' o ',' o ',' o '],[' o ',' o ',' o ',' o ',' o ',' o '],[' o ',' o ',' o ',' o ',' o ',' o '],[' o ',' o ',' o ',' o ',' o ',' o '],[' o ',' o ',' o ',' o ',' o ',' o '],[' o ',' o ',' o ',' o ',' o ',' o '],[' o ',' o ',' o ',' o ',' o ',' o ']]
+    x = playerchoice()
+    while True:
+        printboard(board)
+        position = get_user_turn(board)
+        board[int(position[0])][int(position[2])] = ' x '
+        if win_check(board,position) == True:
+            print('win')
+            break
 
 
 

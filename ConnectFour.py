@@ -29,7 +29,7 @@ Return:
                 if board[column][i] == ' o ':
                     return (str(column) + ','+ str(i))
             raise NameError                             #raise error if column is full
-        except (IndexError,ValueError):print('please input a number 1-6')
+        except (IndexError,ValueError):print('please input a number 1-7')
         except NameError:print('the column you chose was full')
 
 def computer_turn(board):
@@ -48,7 +48,6 @@ Return:
                     return (str(column) + ','+ str(i))
             raise NameError                             #raise error if column is full
         except: continue
-
 
 def playerchoice():
     '''

@@ -16,7 +16,6 @@ def print_board(boardlist):
     
         '''
     for row in range(0,3):
-        col = 0
         for col in range(0,3):
             print(boardlist[row][col], ('|'), end = " ")
         print("")
@@ -212,7 +211,5 @@ def main():
             print ("\n\n")
             inteligent_computer(boardlist, turn)
             print_board(boardlist)
-    
-    if input('play again (yes/no): ').lower == 'yes': main()
 
 main()

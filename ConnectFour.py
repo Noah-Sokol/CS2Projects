@@ -3,7 +3,7 @@
 Created on Sep 12, 2022
 desc: Connect Four game using a 6x7 board using blue and red characters as the pieces
 last edited: 12/30/22
-Bugs: None
+Bugs: computer win check returns True when circles wraps around the board
 '''
 
 import random as rd

@@ -1,5 +1,5 @@
 # CS2Projects
-All individual projects in CS2
+All individual projects in CS2 and what was used to make them
 
 BattleShips - 2d array, winsound
 

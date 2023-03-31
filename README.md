@@ -11,3 +11,5 @@ Post Card Project - formatting currency
 
 Tik_Tak_Toe - 2d arrays
 
+TupleProject - get data from urls, dicts, tuples
+

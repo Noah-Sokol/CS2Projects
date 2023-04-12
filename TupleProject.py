@@ -24,11 +24,11 @@ def excersize_1():
 #Exercise 2:
 def excersize_2():
     x = dict()
-    with urllib.request.urlopen('http://www.py4inf.com/code/mbox-short.txt') as txtfile:  #urllib request from #https://towardsdatascience.com/an-efficient-way-to-read-data-from-the-web-directly-into-python-a526a0b4f4cb
-        for line in [str(i) for i in txtfile]:                      
+    with urllib.request.urlopen('http://www.py4inf.com/code/mbox-short.txt') as txtfile:    #urllib request from #https://towardsdatascience.com/an-efficient-way-to-read-data-from-the-web-directly-into-python-a526a0b4f4cb
+        for line in [str(i) for i in txtfile]:                                              #iterates through each line
             if 'From ' in line:                                     
-                hour = (line.split(":")[0])[-2::]
-                if hour not in x:
+                hour = (line.split(":")[0])[-2::]                                           #finds hour out of line
+                if hour not in x:                                                           #creates directory
                     x[hour] = 1
                 else:
                     x[hour] += 1
@@ -41,10 +41,10 @@ def excersize_3():
     x = dict()
     maxcount = 0
     acceptable_letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
-    with urllib.request.urlopen('http://www.py4inf.com/code/mbox-short.txt') as txtfile:  #urllib request from #https://towardsdatascience.com/an-efficient-way-to-read-data-from-the-web-directly-into-python-a526a0b4f4cb
-        for line in [str(i).replace("b'",'') for i in txtfile]:
-            for letter in [letter.lower() for letter in line]:
-                if letter in acceptable_letters:
+    with urllib.request.urlopen('http://www.py4inf.com/code/mbox-short.txt') as txtfile:    #urllib request from #https://towardsdatascience.com/an-efficient-way-to-read-data-from-the-web-directly-into-python-a526a0b4f4cb
+        for line in [str(i).replace("b'",'') for i in txtfile]:                             #iterates through each line
+            for letter in [letter.lower() for letter in line]:                              #iterates through each letter
+                if letter in acceptable_letters:                                            #creates dictionary
                     if letter not in x:
                         x[letter] = 1
                     else:
@@ -52,7 +52,7 @@ def excersize_3():
     for i in x.values():
         maxcount += i
     for key in sorted(x):
-        print(f"letter: {key} ammount: {x[key]} percent: {x[key]/maxcount*100:.2f}%")
+        print(f"letter: {key} ammount: {x[key]} percent: {x[key]/maxcount*100:.2f}%")       #prints output  
 
 
 def main():

@@ -39,7 +39,6 @@ def excersize_2():
 #Exercise 3:
 def excersize_3():
     x = dict()
-    maxcount = 0
     acceptable_letters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
     with urllib.request.urlopen('http://www.py4inf.com/code/mbox-short.txt') as txtfile:    #urllib request from #https://towardsdatascience.com/an-efficient-way-to-read-data-from-the-web-directly-into-python-a526a0b4f4cb
         for line in [str(i).replace("b'",'') for i in txtfile]:                             #iterates through each line
@@ -49,11 +48,8 @@ def excersize_3():
                         x[letter] = 1
                     else:
                         x[letter] += 1
-    for i in x.values():
-        maxcount += i
     for key in sorted(x):
-        print(f"letter: {key} ammount: {x[key]} percent: {x[key]/maxcount*100:.2f}%")       #prints output  
-
+        print(f"letter: {key} ammount: {x[key]} percent: {x[key]/sum(x.values())*100:.2f}%")#prints output and calculates percentage 
 
 def main():
     excersize_1()

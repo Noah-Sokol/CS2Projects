@@ -17,10 +17,10 @@ def printboard(board):
 def get_user_turn(board):
     '''
     user's turn
-Args:
-    board - list - 6x7 array of board
-Return: 
-    position - str - column,row
+    Args:
+        board - list - 6x7 array of board
+    Return: 
+        position - str - column,row
     '''
     while True:
         try:

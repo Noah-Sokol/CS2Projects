@@ -161,7 +161,7 @@ Returns:
 def main():
     board = [[' o ',' o ',' o ',' o ',' o ',' o '],[' o ',' o ',' o ',' o ',' o ',' o '],[' o ',' o ',' o ',' o ',' o ',' o '],[' o ',' o ',' o ',' o ',' o ',' o '],[' o ',' o ',' o ',' o ',' o ',' o '],[' o ',' o ',' o ',' o ',' o ',' o '],[' o ',' o ',' o ',' o ',' o ',' o ']]
     player,computer = playerchoice()
-    for turn in range (42):
+    for _ in range (42):
         printboard(board)
         position = get_user_turn(board)
         board[int(position[0])][int(position[2])] = player

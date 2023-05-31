@@ -1,40 +1,70 @@
-
 <!DOCTYPE html>
 <html>
     <body>
         <script>
-            function jsfunction() {
-                let score = 0;
-                if(document.getElementById("Big_House").checked)  {
-                    score = score +1;}
-                else if(document.getElementById("Big_House").checked == false) {
-                    score = score - 1;}
-                if(document.getElementsByName("No_House")){
-                    alert(document.getElementsByName("No_House"))
+            function send_user_to(score){
+                if (!(score)){return;}
+                else{
+                    if(score>0){
+                        alert("hi")
+                        window.location.href = "https://www.w3schools.com/js/"
+                    }
                 }
-                alert(score);
-                 
-            
-            
+            }
+            function score_calculator(passes_inspection) {
+                if(!(passes_inspection)){return false;}
+                else{
+                    let score = 0;
+                    if(document.getElementById("Big_House").checked)  {
+                        score = score +1;}
+                    else if(document.getElementById("Big_House").checked == false) {
+                        score = score - 1;}
+                    if(document.getElementById("House").checked){
+                        score = score +1;}
+                    else{score = score -1;}
+                    if(document.getElementById("dog").checked){
+                        score = score+1;}
+                    else if(document.getElementById("cat").checked||document.getElementById("hotdog").checked){
+                        score = score-1;}
+                    return score;    
+                }
+            }
+            function check_for_checked(elementName){
+                let htmlNodes = document.getElementsByName(elementName);
+                let radioButtonsArray = Array.from(htmlNodes);
+                let isAnyRadioButtonChecked = radioButtonsArray.some(element => element.checked);
+                return isAnyRadioButtonChecked;
+                //https://stackoverflow.com/questions/1423777/how-can-i-check-whether-a-radio-button-is-selected-with-javascript
+            }
+            function input_validation(){
+                let myStringArray = ["house prefernce","Live_in_house","Favorite_image"];
+                for (let i = 0; i < myStringArray.length; i++) {
+                    if (!(check_for_checked(myStringArray[i]))){
+                        alert("please submit " + myStringArray[i] + " question");
+                        return false;
+                    }
+                }
+                return true
             }
 
 
-
-
         </script>
-        <form onsubmit="jsfunction()">
+        <form onsubmit="return send_user_to(score_calculator(input_validation()))">
             <style>              
               table.center {
                 margin-left: auto; 
                 margin-right: auto;
-              }
+            }
+              body {
+                background-image: linear-gradient(to top right, #2E3192, #1BFFFF);
+            }
             </style>
             <table class="center">
                 <caption><h2>I Like This House The Best</h2></caption>
                 <tr>
                     <th>                
                     <input type="radio" id ="Big_House" name="house prefernce" value=""></label>
-                    <label for="Big_House"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNCvo_fGGoazqpO5QpjJ5ESBXx4G8s-Y80R-TAtxNI68tCogCwf47fyLfMCQYQAZOoWB8:https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/home-improvement/wp-content/uploads/2022/07/download-23.jpg&usqp=CAU" width="200" height="165"></label>
+                    <label for="Big_House"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNCvo_fGGoazqpO5QpjJ5ESBXx4G8s-Y80R-TAtxNI68tCogCwf47fyLfMCQYQAZOoWB8:https://thumbor.forbes.com/thumbor/fit-in/900x510/https://www.forbes.com/home-improvement/wp-content/uploads/2022/07/download-23.jpg&usqp=CAU" width="300" height="165"></label>
                     </th>
                     <th><input type="radio" id ="Small_House" name="house prefernce" value ="">
                     <label for= "Small_House"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRem_rVIf-6fGMcUgKocr73B29CBpCuARtxOo_WFsSD2jeRRLHIwYZkzE8TLcdik0CTzc:https://hips.hearstapps.com/hmg-prod/images/tiny-homes-3-1562017110.png&usqp=CAU" width="200" height="165"></label>

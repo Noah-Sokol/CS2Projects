@@ -6,8 +6,8 @@
                 if (!(score)){return;}
                 else{
                     if(score>0){
-                        alert("hi")
-                        window.location.href = "https://www.w3schools.com/js/"
+                        alert("hi");
+                        window.location.replace("http://www.w3schools.com");
                     }
                 }
             }
@@ -49,7 +49,7 @@
 
 
         </script>
-        <form onsubmit="return send_user_to(score_calculator(input_validation()))">
+        <form>
             <style>              
               table.center {
                 margin-left: auto; 
@@ -107,7 +107,7 @@
                 </tr>
 
             </table>
-            <input type="submit" name="sub" id="mit">
+            <button onclick="return send_user_to(score_calculator(input_validation()))">Click Me!</button>
             <br>
             <br>
             
